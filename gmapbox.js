@@ -8,11 +8,12 @@ Drupal.gmap.addHandler('gmap',function(elem) {
     var opts = obj.opts;
     var vars = obj.vars;
     var layers = obj.vars.baselayers;
-    var maps = Drupal.settings.gmapbox;
+    var maps = Drupal.settings.gmapbox.mapdefs;
+    var img = Drupal.settings.basePath + Drupal.settings.gmapbox.img;
     // Copyright info
     var copyright = new GCopyright(1,
       new GLatLngBounds(new GLatLng(-90,-180),new GLatLng(90,180) ),
-      0, "<a href='http://mapbox.com'><img src='mapbox.png'></a>");
+      0, "<a href='http://mapbox.com'><img src='" + img +"'></a>");
     var copyrightCollection = new GCopyrightCollection();
     copyrightCollection.addCopyright(copyright);
     // Use .each to avoid scope issues in CustomTilesUrl

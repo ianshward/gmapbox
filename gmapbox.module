@@ -30,7 +30,14 @@ function gmapbox_gmap($op, &$map) {
   $maptypes = gmapbox_maptypes();
   switch ($op) {
     case 'pre_theme_map':
-      drupal_add_js(array('gmapbox' => $maptypes), 'setting');
+      drupal_add_js(array(
+          'gmapbox' => array(
+            'mapdefs' => $maptypes,
+            'img' => drupal_get_path('module', 'gmapbox') . '/assets/mapbox.png',
+          ),
+        ),
+        'setting'
+      );
       drupal_add_js(drupal_get_path('module', 'gmapbox') .'/gmapbox.js'); 
       break;
     case 'baselayers':
