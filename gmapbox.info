@@ -1,0 +1,4 @@
+core = 6.x
+name = "GMapBox"
+description = "MapBox custom map type integration for Gmap module"
+

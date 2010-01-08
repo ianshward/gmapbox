@@ -1,0 +1,42 @@
+<?php
+
+function gmapbox_maptypes() {
+  $map = array();
+  $map['dc-nightvision'] = array(
+    'title' => t('DC Nightvision'),
+    'default' => TRUE,
+    'help' => t('DC Nightvision. Internal name: dc-nightvision'),
+    'minzoom' => '',
+  );
+  $map['congressional-districts-110'] = array(
+    'title' => t('US Congressional Districts'),
+    'default' => TRUE,
+    'help' => t('US Congressional Districts. Internal name: us-congressional-districts'),
+    'minzoom' => '',
+  );
+  $map['world-dark'] = array(
+    'title' => t('World - Dark'),
+    'default' => TRUE,
+    'help' => t('World - Dark Internal name: world-dark'),
+    'minzoom' => '',
+  );
+  return $map;
+}
+
+/**
+ * Implementation of hook_gmap
+ */
+function gmapbox_gmap($op, &$map) {
+  $maptypes = gmapbox_maptypes();
+  switch ($op) {
+    case 'pre_theme_map':
+      drupal_add_js(array('gmapbox' => $maptypes), 'setting');
+      drupal_add_js(drupal_get_path('module', 'gmapbox') .'/gmapbox.js'); 
+      break;
+    case 'baselayers':
+      foreach($maptypes as $name => $params) {
+        $map['MapBox'][$name] = $params;
+      }
+      break;
+  }
+}
