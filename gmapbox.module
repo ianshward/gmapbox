@@ -38,7 +38,9 @@ function gmapbox_gmap($op, &$map) {
         ),
         'setting'
       );
-      drupal_add_js(drupal_get_path('module', 'gmapbox') .'/gmapbox.js'); 
+      drupal_add_js(drupal_get_path('module', 'gmapbox') .'/gmapbox.js');
+      $js = 'http://mapbox-js.s3.amazonaws.com/g/2/mapbox.js';
+      drupal_add_js('document.write(unescape("%3Cscript src=\''. $js . '\' type=\'text/javascript\'%3E%3C/script%3E"));', 'inline');
       break;
     case 'baselayers':
       foreach($maptypes as $name => $params) {
